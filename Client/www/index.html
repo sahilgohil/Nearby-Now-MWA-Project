@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta name="color-scheme" content="light dark">
+
+
+        <link rel="stylesheet" href="js/JQueryMobile/jquery.mobile-1.4.5.min.css" />
+        <link rel="stylesheet" href="css/index.css">
+        <script src="js/JQueryMobile/demos/js/jquery.min.js"></script>
+        <script src="js/JQueryMobile/jquery.mobile-1.4.5.min.js"></script>
+        <script>
+            $.mobile.defaultPageTransition = "pop";
+        </script>
+
+        <title>QR SCANNER</title>
+    </head>
+
+
+    <!-- body -->
+    <body>
+        <div data-role="page" id="home">
+
+            <div data-role="header">
+                <h1>NearbyNow</h1>
+                
+            </div>
+        
+            <div data-role="content">
+                <p><a href="#login-page"  data-role="button" data-shadow="true" id="login-btn">Login</a></p>
+                <p><a href="#sign-up-page"  data-role="button" data-shadow="true" id="sign-up-btn">Sign Up</a></p>
+            </div>
+            </div>
+            
+            <div data-role="footer" data-position="fixed">
+                <h4>&copy; 2023 Sahil Natvarlal Gohil</h4>
+            </div>
+        </div>
+
+        <div data-role="page" id="login-page">
+
+            <div data-role="header">
+                <h1>NearbyNow</h1>
+                <a href="#home" class="ui-btn-right" data-inline="true" data-role="button">Home</a> 
+            </div>
+        
+            <div data-role="content">
+                <h3 id="login-error"></h3>
+                <form id="login-form">
+                    <label for="usernamel">Username:</label>
+                    <input type="text" id="usernamel" name="usernamel" placeholder="Enter your username" required>
+                    
+                    <label for="passwordl">Password:</label>
+                    <input type="password" id="passwordl" name="passwordl" placeholder="Enter your password" required>
+                    
+                    <input type="submit" value="Login">
+                </form>
+            </div>
+            
+            <div data-role="footer" data-position="fixed">
+                <h4>&copy; 2023 Sahil Natvarlal Gohil</h4>
+            </div>
+        </div>
+
+        <div data-role="page" id="sign-up-page">
+
+            <div data-role="header">
+                <h1>NearbyNow</h1>
+                <a href="#home" class="ui-btn-right" data-inline="true" data-role="button">Home</a> 
+            </div>
+        
+            <div data-role="content">
+                <h3 id="sign-up-error"></h3>
+                <form id="sign-up-form">
+                    <label for="firstname">First Name:</label>
+                    <input type="text" id="firstname" name="firstname" placeholder="Enter your firstname" required>
+
+                    <label for="lastname">Last Name:</label>
+                    <input type="text" id="lastname" name="lastname" placeholder="Enter your lastname" required>
+
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                    
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+                    <label for="c_password">Confirm Password:</label>
+                    <input type="password" id="c_password" name="c_password" placeholder="Confirm your password" required>
+                    
+                    <input type="submit" value="Sign Up">
+                </form>
+            </div>
+            
+            <div data-role="footer" data-position="fixed">
+                <h4>&copy; 2023 Sahil Natvarlal Gohil</h4>
+            </div>
+        </div>
+
+
+        <div data-role="page" id="dashboard">
+
+            <div data-role="header">
+                <h1>NearbyNow</h1>
+                <a href="#" class="ui-btn-right" data-inline="true" data-role="button" id="logout">Log Out</a> 
+            </div>
+        
+            <div data-role="content">
+                <h1 class="center-heading">Dashboard</h1>
+                <p class="center-heading" id="user-heading"></p>
+                <p class="center-heading">Find nearby places with click of a button!</p>
+                <p><a href="#"  data-role="button" data-shadow="true" id="restaurant-btn">Restaurants</a></p>
+                <p><a href="#"  data-role="button" data-shadow="true" id="shoppingmall-btn">Shopping Malls</a></p>
+                <p><a href="#"  data-role="button" data-shadow="true" id="park-btn">Parks</a></p>
+                <p><a href="#"  data-role="button" data-shadow="true" id="gym-btn">Gyms</a></p>
+                <p><a href="#"  data-role="button" data-shadow="true" id="library-btn">Library</a></p>
+            </div>
+            
+            <div data-role="footer" data-position="fixed">
+                <h4>&copy; 2023 Sahil Natvarlal Gohil</h4>
+            </div>
+        </div>
+
+
+        <!-- Nearby restaurants page -->
+        <div data-role="page" id="restaurant">
+
+            <div data-role="header">
+                <h1>NearbyNow</h1>
+                <a href="#dashboard" class="ui-btn-right" data-inline="true" data-role="button">Dashboard</a> 
+            </div>
+        
+            <div data-role="content">
+                <h1 class="center-heading">🍢 Restaurants 🍽</h1>
+                <p class="center-heading">Below are the nearby Restaurants </p>
+                <table data-role="table" id="my-table" data-mode="reflow" class="ui-responsive">
+                    <thead>
+                      <tr>
+                        <th>Restaurant Name</th>
+                        <th>Image</th>
+                        <th>Address</th>
+                        <th>Opening Now</th>
+                        <th>Price Indicator</th>
+                        <th>Ratings</th>
+                        <th>Total Ratings</th>
+                      </tr>
+                    </thead>
+                    <tbody id="table-body">
+                    </tbody>
+                  </table>
+            </div>
+            
+            <div data-role="footer" data-position="fixed">
+                <h4>&copy; 2023 Sahil Natvarlal Gohil</h4>
+            </div>
+        </div>
+
+
+        <!-- Nearby shopping malls page -->
+        <div data-role="page" id="shoppingmall">
+
+            <div data-role="header">
+                <h1>NearbyNow</h1>
+                <a href="#dashboard" class="ui-btn-right" data-inline="true" data-role="button">Dashboard</a> 
+            </div>
+        
+            <div data-role="content">
+                <h1 class="center-heading">Shopping Malls 🏬</h1>
+                <p class="center-heading">Below are the nearby Shopping Malls 🛍️</p>
+                <table data-role="table"  data-mode="reflow" class="ui-responsive">
+                    <thead>
+                      <tr>
+                        <th>Shopping Mall Name</th>
+                        <th>Image</th>
+                        <th>Address</th>
+                        <th>Opening Now</th>
+                        <th>Price Indicator</th>
+                        <th>Ratings</th>
+                        <th>Total Ratings</th>
+                      </tr>
+                    </thead>
+                    <tbody id="table-body-shopping">
+                    </tbody>
+                  </table>
+            </div>
+            
+            <div data-role="footer" data-position="fixed">
+                <h4>&copy; 2023 Sahil Natvarlal Gohil</h4>
+            </div>
+        </div>
+        
+        <!-- Nearby Parks page -->
+        <div data-role="page" id="park">
+
+            <div data-role="header">
+                <h1>NearbyNow</h1>
+                <a href="#dashboard" class="ui-btn-right" data-inline="true" data-role="button">Dashboard</a> 
+            </div>
+        
+            <div data-role="content">
+                <h1 class="center-heading">Parks 🏬</h1>
+                <p class="center-heading">Below are the nearby Parks 🛍️</p>
+                <table data-role="table" data-mode="reflow" class="ui-responsive">
+                    <thead>
+                      <tr>
+                        <th>Park Name</th>
+                        <th>Image</th>
+                        <th>Address</th>
+                        <th>Opening Now</th>
+                        <th>Ratings</th>
+                        <th>Total Ratings</th>
+                      </tr>
+                    </thead>
+                    <tbody id="table-body-park">
+                    </tbody>
+                  </table>
+            </div>
+            
+            <div data-role="footer" data-position="fixed">
+                <h4>&copy; 2023 Sahil Natvarlal Gohil</h4>
+            </div>
+        </div>
+
+
+                <!-- Nearby Gyms page -->
+                <div data-role="page" id="gym">
+
+                    <div data-role="header">
+                        <h1>NearbyNow</h1>
+                        <a href="#dashboard" class="ui-btn-right" data-inline="true" data-role="button">Dashboard</a> 
+                    </div>
+                
+                    <div data-role="content">
+                        <h1 class="center-heading">Gyms 🦾</h1>
+                        <p class="center-heading">Below are the nearby Gyms 🏋🏻‍♂️</p>
+                        <table data-role="table" data-mode="reflow" class="ui-responsive">
+                            <thead>
+                              <tr>
+                                <th>Gym Name</th>
+                                <th>Image</th>
+                                <th>Address</th>
+                                <th>Opening Now</th>
+                                <th>Ratings</th>
+                                <th>Total Ratings</th>
+                              </tr>
+                            </thead>
+                            <tbody id="table-body-gym">
+                            </tbody>
+                          </table>
+                    </div>
+                    
+                    <div data-role="footer" data-position="fixed">
+                        <h4>&copy; 2023 Sahil Natvarlal Gohil</h4>
+                    </div>
+                </div>
+
+
+
+                <!-- Nearby Libraries page -->
+                <div data-role="page" id="library">
+
+                    <div data-role="header">
+                        <h1>NearbyNow</h1>
+                        <a href="#dashboard" class="ui-btn-right" data-inline="true" data-role="button">Dashboard</a> 
+                    </div>
+                
+                    <div data-role="content">
+                        <h1 class="center-heading">Libraries 👨‍💻</h1>
+                        <p class="center-heading">Below are the nearby Libraries 🎒</p>
+                        <table data-role="table" data-mode="reflow" class="ui-responsive">
+                            <thead>
+                              <tr>
+                                <th>Library Name</th>
+                                <th>Image</th>
+                                <th>Address</th>
+                                <th>Opening Now</th>
+                                <th>Ratings</th>
+                                <th>Total Ratings</th>
+                              </tr>
+                            </thead>
+                            <tbody id="table-body-library">
+                            </tbody>
+                          </table>
+                    </div>
+                    
+                    <div data-role="footer" data-position="fixed">
+                        <h4>&copy; 2023 Sahil Natvarlal Gohil</h4>
+                    </div>
+                </div>
+      
+
+    
+
+    <script src="cordova.js"></script>
+    <script src="js/index.js"></script>
+    </body>
+</html>
