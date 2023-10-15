@@ -1,8 +1,14 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
 
-
-
+    console.log("Device is ready");
+    // depending on the platform set the hostname and port number
+    // get the ip address of the server
+    
+    var platform = cordova.platformId;
+    const hostname = platform == "browser" ? "localhost":"10.0.2.2";
+    const portNumber = 3000;
+    const URL = `http://${hostname}:${portNumber}`;
     $.ajaxSetup({
         crossDomain: true,
         xhrFields: {
@@ -28,7 +34,7 @@ function onDeviceReady() {
             $("#login-error").show();
             error = "Password is required";
         } else {
-            $.post('http://localhost:3000/loginUser',{"username":usernamel.value,"password":passwordl.value},(reply,status)=>{
+            $.post(`${URL}/loginUser`,{"username":usernamel.value,"password":passwordl.value},(reply,status)=>{
                 if(reply.authentication === 'success')
                 {
                     $("#user-heading").text(`Welcome to you home ${reply.firstname},`)
@@ -64,7 +70,7 @@ function onDeviceReady() {
                 "username":username.value,
                 "password":password.value
             }
-            $.post('http://localhost:3000/createNewUser',{
+            $.post(`${URL}/createNewUser`,{
                 "firstname":firstname.value,
                 "lastname":lastname.value,
                 "username":username.value,
@@ -84,7 +90,7 @@ function onDeviceReady() {
 
     // handle the user logout
     $('#logout').click(()=>{
-        $.get('http://localhost:3000/logout',(reply,status)=>{
+        $.get(`${URL}/logout`,(reply,status)=>{
             alert(reply.message);
             $.mobile.changePage("#home",{
                 transition:'slide'
@@ -101,7 +107,7 @@ function onDeviceReady() {
             navigator.geolocation.getCurrentPosition((p)=>{
                 const lattitude = p.coords.latitude;
                 const longitude = p.coords.longitude;
-                $.post('http://localhost:3000/getNearbyPlace',{"lat":lattitude,"lon":longitude,"place":"restaurant"},(reply,status)=>{
+                $.post(`${URL}/getNearbyPlace`,{"lat":lattitude,"lon":longitude,"place":"restaurant"},(reply,status)=>{
                     let tableBody = '';
                     reply.data.forEach(element => {
                         tableBody +=`
@@ -141,7 +147,7 @@ function onDeviceReady() {
             navigator.geolocation.getCurrentPosition((p)=>{
                 const lattitude = p.coords.latitude;
                 const longitude = p.coords.longitude;
-                $.post('http://localhost:3000/getNearbyPlace',{"lat":lattitude,"lon":longitude,"place":"shopping_mall"},(reply,status)=>{
+                $.post(`${URL}/getNearbyPlace`,{"lat":lattitude,"lon":longitude,"place":"shopping_mall"},(reply,status)=>{
                     let tableBody = '';
                     reply.data.forEach(element => {
                         tableBody +=`
@@ -180,7 +186,7 @@ function onDeviceReady() {
             navigator.geolocation.getCurrentPosition((p)=>{
                 const lattitude = p.coords.latitude;
                 const longitude = p.coords.longitude;
-                $.post('http://localhost:3000/getNearbyPlace',{"lat":lattitude,"lon":longitude,"place":"park"},(reply,status)=>{
+                $.post(`${URL}/getNearbyPlace`,{"lat":lattitude,"lon":longitude,"place":"park"},(reply,status)=>{
                     let tableBody = '';
                     reply.data.forEach(element => {
                         tableBody +=`
@@ -218,7 +224,7 @@ function onDeviceReady() {
             navigator.geolocation.getCurrentPosition((p)=>{
                 const lattitude = p.coords.latitude;
                 const longitude = p.coords.longitude;
-                $.post('http://localhost:3000/getNearbyPlace',{"lat":lattitude,"lon":longitude,"place":"gym"},(reply,status)=>{
+                $.post(`${URL}/getNearbyPlace`,{"lat":lattitude,"lon":longitude,"place":"gym"},(reply,status)=>{
                     let tableBody = '';
                     reply.data.forEach(element => {
                         tableBody +=`
@@ -255,7 +261,7 @@ function onDeviceReady() {
             navigator.geolocation.getCurrentPosition((p)=>{
                 const lattitude = p.coords.latitude;
                 const longitude = p.coords.longitude;
-                $.post('http://localhost:3000/getNearbyPlace',{"lat":lattitude,"lon":longitude,"place":"library"},(reply,status)=>{
+                $.post(`${URL}/getNearbyPlace`,{"lat":lattitude,"lon":longitude,"place":"library"},(reply,status)=>{
                     let tableBody = '';
                     reply.data.forEach(element => {
                         tableBody +=`

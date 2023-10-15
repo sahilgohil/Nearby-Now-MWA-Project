@@ -57,7 +57,7 @@ const handleLoginUser = async (req,res)=>{
     try {
         const uname = req.body.username;
         const password = req.body.password;
-
+        console.log("handling login user");
         const findUser = await User.findOne({'username':uname}).exec();
         if(!findUser)
         {
